@@ -1,0 +1,53 @@
+<html>
+<head>
+  <style>
+    body {
+      background: #555;
+    }
+    
+    .content {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 10px;
+    }
+    .div1 {
+  width: 300px;
+  height: 50px;
+  border: 1px solid blue;
+}
+    </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="content">
+<h1><u>ASK ME ANYTHING</u></h1>
+<div>
+ <form>
+ <label for="box">Enter your question here</label>
+ </form>
+ <form>
+ <input class="div1" type="text" id="mytext" >
+</form>
+</div>
+<p id="demo"></p>
+<button type="button" onclick="myFunction()">Answer</button>
+<button type="button">Clear</button>
+ </div>
+</body>
+<script>
+  function myFunction() {
+    var keyword = document.getElementById("mytext").value;
+    console.log(keyword)
+   $.ajax({
+      url: 'http://127.0.0.1:5000/answer/'+keyword,
+      method: 'get',
+      success: function(data) {
+           console.log(data)
+           document.getElementById("demo").innerHTML = "answer is : "+ data.slice(2,-2)
+      }
+      });
+  }
+</script>   
+</html>
